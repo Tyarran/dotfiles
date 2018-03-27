@@ -1,0 +1,6 @@
+[submodule "/home/romain/Projects/dotfiles/.oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+	path = .oh-my-zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".oh-my-zsh/custom/plugins/zshmarks"]
+	path = .oh-my-zsh/custom/plugins/zshmarks
+	url = https://github.com/jocelynmallon/zshmarks.git
