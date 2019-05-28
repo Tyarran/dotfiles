@@ -13,3 +13,7 @@ eval `keychain --eval -q`
 
 # added by travis gem
 #[ -f /home/romain/.travis/travis.sh ] && source /home/romain/.travis/travis.sh
+
+
+# Pew autocompletion
+source $(pew shell_config)
