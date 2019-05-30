@@ -7,7 +7,7 @@ source /usr/share/fzf/key-bindings.zsh
 #powerline-daemon -q
 #source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 
-eval `keychain --eval -q`
+eval `keychain --eval -q --agents "ssh,gpg"`
 #eval `keychain -q` 
 
 
