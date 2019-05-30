@@ -1,0 +1,10 @@
+[Unit]
+Description=light-locker before sleep
+Before=sleep.target
+
+[Service]
+#ExecStart=/home/romain/.config/light-locker/lockscreen.sh
+ExecStart=light-locker-command -l
+
+[Install]
+WantedBy=sleep.target
