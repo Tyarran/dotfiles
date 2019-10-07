@@ -1,10 +1,11 @@
 [Unit]
 Description=light-locker before sleep
-Before=sleep.target
 
 [Service]
-#ExecStart=/home/romain/.config/light-locker/lockscreen.sh
 ExecStart=light-locker-command -l
+Type=forking
+Environment=DISPLAY=:0
 
 [Install]
-WantedBy=sleep.target
+WantedBy=sleep.target suspend.target
+Before=sleep.target suspend.target
