@@ -52,8 +52,8 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(tmuxinator zsh-autosuggestions)
-plugins=()
+plugins=(tmuxinator zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=()
 
 
 # User configuration
