@@ -6,7 +6,7 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="perso"
-#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs virtualenv)
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
@@ -94,3 +94,6 @@ source $ZSH/oh-my-zsh.sh
 #eval $(thefuck --alias)
 
 #bindkey -v
+
+# opam configuration
+test -r /home/romain/.opam/opam-init/init.zsh && . /home/romain/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
