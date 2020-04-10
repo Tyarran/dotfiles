@@ -17,7 +17,18 @@ eval `keychain --eval -q --agents "ssh,gpg"`
 
 # Pew autocompletion
 source $(pew shell_config)
-source /usr/lib/ruby/gems/2.6.0/gems/tmuxinator-1.1.1/completion/tmuxinator.zsh
+
+# Tmuxinator
+# source /home/romain/.gem/ruby/2.6.0/gems/tmuxinator-1.1.3/completion/tmuxinator.zsh
+
+# Goto
+source "$HOME/.oh-my-zsh/custom/externals/goto/goto.sh"
 
 # Z
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh 
+
+
+# PipX
+autoload -U bashcompinit
+bashcompinit
+eval "$(register-python-argcomplete pipx)"
