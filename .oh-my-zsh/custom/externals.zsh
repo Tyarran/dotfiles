@@ -22,7 +22,7 @@ source $(pew shell_config)
 # source /home/romain/.gem/ruby/2.6.0/gems/tmuxinator-1.1.3/completion/tmuxinator.zsh
 
 # Goto
-source "$HOME/.oh-my-zsh/custom/externals/goto/goto.sh"
+#source "$HOME/.oh-my-zsh/custom/externals/goto/goto.sh"
 
 # Z
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh 
@@ -32,3 +32,6 @@ source "$HOME/.oh-my-zsh/custom/externals/goto/goto.sh"
 autoload -U bashcompinit
 bashcompinit
 eval "$(register-python-argcomplete pipx)"
+
+# asdf
+source /opt/asdf-vm/asdf.sh
