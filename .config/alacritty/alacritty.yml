@@ -119,11 +119,14 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    # family: Fira Code Retina
-    family: CaskaydiaCove Nerd Font SemiBold
+    family: Fira Code Nerd Font
+    # family: Monaco for Powerline
+    # family: InconsolataGo Nerd Font
+    # family: CaskaydiaCove Nerd Font SemiBold
+    # family: CaskaydiaCove Nerd Font SemiBold
 
     # The `style` can be specified to pick a specific face.
-    style: Regular
+    style: Retina
 
   # Bold font face
   #bold:
