@@ -1,0 +1,2 @@
+0000000000000000000000000000000000000000 43bb929414fbddc387e889917214564f40745b6a Romain Commandé <romain.commande@wttj.co> 1688374979 +0200	autostash
+43bb929414fbddc387e889917214564f40745b6a 00ea63bb1f322711d98936b92a5bbe8c2aa2b557 Romain Commandé <romain.commande@wttj.co> 1688375026 +0200	WIP on master: fe4b565 fix(docker): only load old completion if docker <23
