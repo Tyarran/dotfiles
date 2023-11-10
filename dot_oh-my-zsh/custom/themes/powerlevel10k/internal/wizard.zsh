@@ -767,6 +767,11 @@ function ask_quotes() {
 }
 
 function ask_arrow() {
+  # This condition holds as long as zsh is compiled with unicode 9 support.
+  if (( ${(m)#${(g::)1}} != 1 )); then
+    cap_arrow=0
+    return
+  fi
   [[ -n $2 ]] && add_widget 0 flowing -c "$2"
   add_widget 0 flowing -c %BDoes this look like an%b "%2Fupwards arrow%f%B?%b"
   add_widget 0 flowing -c reference: "$(href https://graphemica.com/%F0%9F%A0%89)"
@@ -786,6 +791,39 @@ function ask_arrow() {
     r) return 1;;
     y) cap_arrow=1;;
     n) cap_arrow=0;;
+  esac
+  return 0
+}
+
+function print_indented() {
+  local -i max_width=$1
+  local text=$2
+  local -i indent='(wizard_columns - max_width) / 2'
+  print -P "${(l:$indent:: :)}$text"
+}
+
+function ask_width() {
+  add_widget 0 flowing -c %BWhat digit is the%b "%2Fdownwards arrow%f" %Bpointing "at?%b"
+  add_widget 0 print -P ""
+  add_widget 0 print_indented 11 '%3F\UF0734%f %3F\UF0734%f %3F\UF0734%f %2F\UF072E%f'
+  add_widget 0 print_indented 11 '     111222'
+  add_widget 0 print -P ""
+  add_widget 3
+  add_widget 0 print -P "%B(1)  It is pointing at '1'.%b"
+  add_widget 0 print -P ""
+  add_widget 1
+  add_widget 0 print -P "%B(2)  It is pointing at '2'.%b"
+  add_widget 0 print -P ""
+  add_widget 1
+  add_widget 0 print -P "%B(3)  Something else.%b"
+  add_widget 0 print -P ""
+  add_widget 2
+  add_widget 0 print -P "(r)  Restart from the beginning."
+  ask 123r
+  case $choice in
+    r) return 1;;
+    1) cap_arrow=1;;
+    2|3) cap_arrow=0;;
   esac
   return 0
 }
@@ -1088,7 +1126,7 @@ function os_icon_name() {
         if [[ -r /etc/os-release ]]; then
           local lines=(${(f)"$(</etc/os-release)"})
           lines=(${(@M)lines:#ID=*})
-          (( $#lines == 1 )) && os_release_id=${lines[1]#ID=}
+          (( $#lines == 1 )) && os_release_id=${(Q)${lines[1]#ID=}}
         elif [[ -e /etc/artix-release ]]; then
           os_release_id=artix
         fi
@@ -1118,6 +1156,8 @@ function os_icon_name() {
           *rhel*)                  echo LINUX_RHEL_ICON;;
           amzn)                    echo LINUX_AMZN_ICON;;
           endeavouros)             echo LINUX_ENDEAVOUROS_ICON;;
+          rocky)                   echo LINUX_ROCKY_ICON;;
+          guix)                    echo LINUX_GUIX_ICON;;
           *)                       echo LINUX_ICON;;
         esac
         ;;
@@ -2068,7 +2108,7 @@ while true; do
 
   unset pure_use_rprompt
 
-  if [[ $TERM != (dumb|linux) && $langinfo[CODESET] == (utf|UTF)(-|)8 ]]; then
+  if [[ -o multibyte && $TERM != (dumb|linux) && $langinfo[CODESET] == (utf|UTF)(-|)8 ]]; then
     ask_font || continue
     ask_diamond || continue
     if [[ $AWESOME_GLYPHS_LOADED == 1 ]]; then
@@ -2100,6 +2140,9 @@ while true; do
           POWERLEVEL9K_MODE=nerdfont-complete
         else
           ask_arrow '\UF0737' "Let's try another one." || continue
+          if (( cap_arrow )); then
+            ask_width || continue
+          fi
           if (( cap_arrow )); then
             POWERLEVEL9K_MODE=nerdfont-v3
           else
