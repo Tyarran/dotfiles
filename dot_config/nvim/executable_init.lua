@@ -564,6 +564,7 @@ vim.opt.relativenumber = false
 --
 -- colorscheme tokyonight-moon
 vim.cmd([[
+colorscheme tokyonight-night
 
 set clipboard+=unnamedplus
 set completeopt=menu,menuone,noselect
@@ -588,4 +589,4 @@ autocmd BufReadPost *.re set filetype=reason
 autocmd BufWritePre * lua vim.lsp.buf.format()
 ]])
 
-require('onedark').load()
+-- require('onedark').load()
