@@ -109,3 +109,5 @@ test -r /home/romain/.opam/opam-init/init.zsh && . /home/romain/.opam/opam-init/
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 if [ -e /home/romain/.nix-profile/etc/profile.d/nix.sh ]; then . /home/romain/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+if [ -e /home/tyarran/.nix-profile/etc/profile.d/nix.sh ]; then . /home/tyarran/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
