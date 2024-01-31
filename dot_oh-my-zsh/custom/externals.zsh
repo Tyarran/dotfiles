@@ -39,3 +39,6 @@ source /opt/asdf-vm/asdf.sh
 function ssh_jump() {
   ssh -A -J $1 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $2
 }
+
+# Nix
+source /home/romain/.nix-profile/etc/profile.d/nix.sh
