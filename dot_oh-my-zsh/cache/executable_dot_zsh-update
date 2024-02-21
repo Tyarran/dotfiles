@@ -1,13 +1,17 @@
-LAST_EPOCH=19745
+LAST_EPOCH=19773
 EXIT_STATUS=1
 ERROR='error: The following untracked working tree files would be overwritten by merge:
 	.github/dependencies.yml
 	.github/workflows/dependencies.yml
 	.github/workflows/dependencies/requirements.txt
 	.github/workflows/dependencies/updater.py
+	plugins/bazel/bazel.plugin.zsh
 	plugins/history-substring-search/dependencies/OMZ-README.md
 	plugins/mise/README.md
 	plugins/mise/mise.plugin.zsh
+	plugins/ssh/ssh.plugin.zsh
+	plugins/stripe/README.md
+	plugins/stripe/stripe.plugin.zsh
 	plugins/z/img/demo.gif
 Please move or remove them before you merge.
 Aborting
