@@ -47,6 +47,8 @@ plugins = {
 	},
 
 	-- colorscheme
+	"bluz71/vim-nightfly-colors",
+	"chriskempson/base16-vim",
 	"catppuccin/nvim",
 	"cocopon/iceberg.vim",
 	"EdenEast/nightfox.nvim",
@@ -563,12 +565,13 @@ vim.opt.relativenumber = false
 -- filetype plugin on
 --
 -- colorscheme tokyonight-moon
+-- colorscheme tokyonight-night
 vim.cmd([[
-colorscheme tokyonight-night
 
 set clipboard+=unnamedplus
 set completeopt=menu,menuone,noselect
 
+colorscheme nightfly
 
 "Keybindings
 nmap <C-y> :set hlsearch! hlsearch?<CR>
