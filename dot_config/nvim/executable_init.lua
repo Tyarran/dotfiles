@@ -267,13 +267,13 @@ plugins = {
 		end,
 		cmd = { "TroubleToggle", "Trouble" },
 	},
-	-- {
-	-- 	"akinsho/toggleterm.nvim",
-	-- 	config = function()
-	-- 		require("toggleterm").setup()
-	-- 		vim.keymap.set("n", "<Leader>tt", "<cmd>ToggleTerm<cr>", { silent = true, noremap = true })
-	-- 	end
-	-- },
+	{
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("toggleterm").setup()
+			vim.keymap.set("n", "<Leader>tt", "<cmd>ToggleTerm<cr>", { silent = true, noremap = true })
+		end
+	},
 	{
 		'rebelot/terminal.nvim',
 		config = function()

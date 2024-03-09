@@ -1,1 +1,3 @@
-LAST_EPOCH=19774
+LAST_EPOCH=19789
+EXIT_STATUS=1
+ERROR='fatal: reference is not a tree: master'
