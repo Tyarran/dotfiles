@@ -14,3 +14,4 @@ export DOCKER_BUILDKIT=1
 export CYPRESS_NO_COMMAND_LOG=1
 
 export PROJECTS_PATH="$HOME/Projects"
+export NIX_BUILD_SHELL=zsh
