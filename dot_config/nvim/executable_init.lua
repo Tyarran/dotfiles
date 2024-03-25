@@ -503,7 +503,7 @@ plugins = {
 				-- Optional, if set to true, the specified mappings in the `mappings`
 				-- table will overwrite existing ones. Otherwise a warning is printed
 				-- and the mappings are not applied.
-				overwrite_mappings = false,
+				-- overwrite_mappings = false,
 				--
 				new_notes_location = "current_dir",
 				-- Optional, completion.
