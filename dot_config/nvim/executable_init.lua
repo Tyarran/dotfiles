@@ -132,6 +132,7 @@ plugins = {
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
+			"nvim-neotest/nvim-nio",
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"antoinemadec/FixCursorHold.nvim",
@@ -488,7 +489,7 @@ plugins = {
 		"epwalsh/obsidian.nvim",
 		config = function()
 			require("obsidian").setup({
-				dir = "~/Obsidian",
+				dir = "~/Obsidian/rcommande",
 				-- Optional, key mappings.
 				mappings = {
 					-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
@@ -588,8 +589,6 @@ let g:copilot_no_tab_map = v:true
 
 " aliases
 command! TT :ToggleTerm direction=float
-autocmd BufReadPost *.re set filetype=reason
-autocmd BufWritePre * lua vim.lsp.buf.format()
 ]])
 
 -- require('onedark').load()
