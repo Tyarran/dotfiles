@@ -25,6 +25,7 @@ cmp.setup({
 		{ name = 'buffer' },
 		{ name = 'path' },
 		{ name = 'emoji' },
+		-- { name = 'codeium' },
 	},
 	formatting = {
 		format = lspkind.cmp_format({

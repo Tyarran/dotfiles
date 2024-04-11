@@ -85,6 +85,26 @@ plugins = {
 
 	-- code tools
 	{
+		"Exafunction/codeium.vim",
+		config = function()
+			-- require("codeium").setup({
+			-- })
+			vim.g.codeium_disable_bindings = 1
+			vim.keymap.set('i', '<C-t>', function() return vim.fn['codeium#Complete']() end,
+				{ expr = true, silent = true })
+			vim.keymap.set('i', '<C-J>', function() return vim.fn['codeium#Accept']() end,
+				{ expr = true, silent = true })
+			vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end,
+				{ expr = true, silent = true })
+			vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end,
+				{ expr = true, silent = true })
+			vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end,
+				{ expr = true, silent = true })
+			-- vim.keymap.set('i', '<c-J>', function() return vim.fn['codeium#Chat']() end,
+			-- 	{ expr = true, silent = true })
+		end
+	},
+	{
 		"kylechui/nvim-surround",
 		config = function()
 			require("nvim-surround").setup({
@@ -125,10 +145,10 @@ plugins = {
 	-- 	cmd = { "Neogit" },
 	-- },
 	"wakatime/vim-wakatime",
-	{
-		"github/copilot.vim",
-		event = "BufRead",
-	},
+	-- {
+	-- 	"github/copilot.vim",
+	-- 	event = "BufRead",
+	-- },
 	{
 		"nvim-neotest/neotest",
 		dependencies = {
@@ -397,6 +417,37 @@ plugins = {
 			}
 		end
 	},
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			local harpoon = require("harpoon")
+			harpoon:setup()
+			vim.keymap.set("n", "<leader>hm", function() harpoon:list():append() end)
+
+			-- basic telescope configuration
+			local conf = require("telescope.config").values
+			local function toggle_telescope(harpoon_files)
+				local file_paths = {}
+				for _, item in ipairs(harpoon_files.items) do
+					table.insert(file_paths, item.value)
+				end
+
+				require("telescope.pickers").new({}, {
+					prompt_title = "Harpoon",
+					finder = require("telescope.finders").new_table({
+						results = file_paths,
+					}),
+					previewer = conf.file_previewer({}),
+					sorter = conf.generic_sorter({}),
+				}):find()
+			end
+
+			vim.keymap.set("n", "<leader>hl", function() toggle_telescope(harpoon:list()) end,
+				{ desc = "Open harpoon window" })
+		end
+	},
 
 	-- LSP
 	{
@@ -489,7 +540,7 @@ plugins = {
 		"epwalsh/obsidian.nvim",
 		config = function()
 			require("obsidian").setup({
-				dir = "~/Obsidian/rcommande",
+				dir = "~/Obsidian",
 				-- Optional, key mappings.
 				mappings = {
 					-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
@@ -567,6 +618,8 @@ vim.opt.relativenumber = false
 --
 -- colorscheme tokyonight-moon
 -- colorscheme tokyonight-night
+-- imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+-- let g:copilot_no_tab_map = v:true
 vim.cmd([[
 
 set clipboard+=unnamedplus
@@ -584,11 +637,11 @@ nmap M ]m
 vmap m [m
 vmap M ]m
 nnoremap <C-w>n :split<CR>
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
 
 " aliases
 command! TT :ToggleTerm direction=float
+autocmd BufReadPost *.re set filetype=reason
+autocmd BufWritePre * lua vim.lsp.buf.format()
 ]])
 
 -- require('onedark').load()
