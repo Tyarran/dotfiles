@@ -30,35 +30,35 @@ local plugins = {
     "reasonml-editor/vim-reason-plus",
     ft = "reason"
   },
-  -- {
-  --   "elixir-tools/elixir-tools.nvim",
-  --   version = "*",
-  --   event = { "BufReadPre", "BufNewFile" },
-  --   config = function()
-  --     local elixir = require("elixir")
-  --     local elixirls = require("elixir.elixirls")
-  --
-  --     elixir.setup {
-  --       nextls = { enable = true },
-  --       credo = {},
-  --       elixirls = {
-  --         enable = true,
-  --         settings = elixirls.settings {
-  --           dialyzerEnabled = false,
-  --           enableTestLenses = false,
-  --         },
-  --         on_attach = function(_client, _bufnr)
-  --           vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-  --           vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-  --           vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-  --         end,
-  --       }
-  --     }
-  --   end,
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  -- },
+  {
+    "elixir-tools/elixir-tools.nvim",
+    version = "*",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local elixir = require("elixir")
+      local elixirls = require("elixir.elixirls")
+
+      elixir.setup {
+        nextls = { enable = true },
+        credo = {},
+        elixirls = {
+          enable = true,
+          settings = elixirls.settings {
+            dialyzerEnabled = false,
+            enableTestLenses = false,
+          },
+          on_attach = function(_client, _bufnr)
+            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+          end,
+        }
+      }
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
 
   -- colorscheme
   "bluz71/vim-nightfly-colors",
@@ -91,33 +91,8 @@ local plugins = {
   },
 
   -- code tools
-  -- {
-  --   'nvimdev/indentmini.nvim',
-  --   event = 'BufEnter',
-  --   config = function()
-  --     require('indentmini').setup()
-  --   end,
-  -- },
   { "echasnovski/mini.indentscope", config = function() require("mini.indentscope").setup() end },
 
-  -- {
-  --   "lukas-reineke/indent-blankline.nvim",
-  --   main = "ibl",
-  --   config = function()
-  --     local highlight = {
-  --       "CursorColumn",
-  --       "Whitespace",
-  --     }
-  --     require("ibl").setup {
-  --       indent = { highlight = highlight, char = "" },
-  --       whitespace = {
-  --         highlight = highlight,
-  --         remove_blankline_trail = false,
-  --       },
-  --       scope = { enabled = false },
-  --     }
-  --   end
-  -- },
   {
     "monkoose/matchparen.nvim",
     config = function()
@@ -246,23 +221,6 @@ local plugins = {
       "tpope/vim-rhubarb",
     }
   },
-  -- {
-  --   "utilyre/barbecue.nvim",
-  --   name = "barbecue",
-  --   version = "*",
-  --   dependencies = {
-  --     "SmiteshP/nvim-navic",
-  --     "nvim-tree/nvim-web-devicons", -- optional dependency
-  --   },
-  --   config = function()
-  --     require("barbecue").setup {
-  --       theme = "tokyonight"
-  --     }
-  --   end,
-  --   opts = {
-  --     -- configurations go here
-  --   },
-  -- },
 
   -- interface
   {
@@ -331,45 +289,73 @@ local plugins = {
   {
     "akinsho/toggleterm.nvim",
     config = function()
-      require("toggleterm").setup()
-      vim.keymap.set("n", "<Leader>tt", "<cmd>ToggleTerm<cr>", { silent = true, noremap = true })
-    end
-  },
-  {
-    'rebelot/terminal.nvim',
-    config = function()
-      require("terminal").setup()
-      local term_map = require("terminal.mappings")
-      vim.keymap.set({ "n", "x" }, "<leader>ts", term_map.operator_send, { expr = true })
-      vim.keymap.set("n", "<leader>to", term_map.toggle)
-      vim.keymap.set("n", "<leader>tO", term_map.toggle({ open_cmd = "enew" }))
-      vim.keymap.set("n", "<leader>tr", term_map.run)
-      vim.keymap.set("n", "<leader>tR", term_map.run(nil, { layout = { open_cmd = "enew" } }))
-      vim.keymap.set("n", "<leader>tk", term_map.kill)
-      vim.keymap.set("n", "<leader>t]", term_map.cycle_next)
-      vim.keymap.set("n", "<leader>t[", term_map.cycle_prev)
-      vim.keymap.set("n", "<leader>tl", term_map.move({ open_cmd = "belowright vnew" }))
-      vim.keymap.set("n", "<leader>tL", term_map.move({ open_cmd = "botright vnew" }))
-      vim.keymap.set("n", "<leader>th", term_map.move({ open_cmd = "belowright new" }))
-      vim.keymap.set("n", "<leader>tH", term_map.move({ open_cmd = "botright new" }))
-      vim.keymap.set("n", "<leader>tf", term_map.move({ open_cmd = "float" }))
+      require("toggleterm").setup({
+        shade_terminals = true,
+        auto_scroll = false,
+        direction = "float",
+        start_in_insert = false,
+        hide_numbers = false,
+        float_opts = {
+          border = "double"
+        }
+      })
+      vim.keymap.set("n", "<Leader>tf", "<cmd>ToggleTerm direction=float<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<Leader>th", "<cmd>ToggleTerm direction=horizontal<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<Leader>tt", "<cmd>ToggleTerm direction=tab<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<Leader>to", "<cmd>ToggleTerm<cr>", { silent = true, noremap = true })
+      vim.keymap.set("v", "<Leader>tt", "<cmd>ToggleTermSendVisualSelection<cr>", { silent = true, noremap = true })
+      vim.keymap.set("x", "<Leader>tt", "<cmd>ToggleTermSendVisualLines<cr>", { silent = true, noremap = true })
+      local Terminal = require('toggleterm.terminal').Terminal
+      local lazygit  = Terminal:new({ cmd = "lazygit", hidden = true })
+      local btop     = Terminal:new({ cmd = "btop", hidden = true })
+
+      function _lazygit_toggle()
+        lazygit:toggle()
+      end
+
+      function _btop_toggle()
+        btop:toggle()
+      end
+
+      vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>bt", "<cmd>lua _btop_toggle()<CR>", { noremap = true, silent = true })
     end
   },
   -- {
-  --   "folke/noice.nvim",
-  --   event = "VeryLazy",
-  --   opts = {
-  --     -- add any options here
-  --   },
-  --   dependencies = {
-  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-  --     "MunifTanjim/nui.nvim",
-  --     -- OPTIONAL:
-  --     --   `nvim-notify` is only needed, if you want to use the notification view.
-  --     --   If not available, we use `mini` as the fallback
-  --     "rcarriga/nvim-notify",
-  --   }
+  --   'rebelot/terminal.nvim',
+  --   config = function()
+  --     require("terminal").setup()
+  --     local term_map = require("terminal.mappings")
+  --     vim.keymap.set({ "n", "x" }, "<leader>ts", term_map.operator_send, { expr = true })
+  --     vim.keymap.set("n", "<leader>to", term_map.toggle)
+  --     vim.keymap.set("n", "<leader>tO", term_map.toggle({ open_cmd = "enew" }))
+  --     vim.keymap.set("n", "<leader>tr", term_map.run)
+  --     vim.keymap.set("n", "<leader>tR", term_map.run(nil, { layout = { open_cmd = "enew" } }))
+  --     vim.keymap.set("n", "<leader>tk", term_map.kill)
+  --     vim.keymap.set("n", "<leader>t]", term_map.cycle_next)
+  --     vim.keymap.set("n", "<leader>t[", term_map.cycle_prev)
+  --     vim.keymap.set("n", "<leader>tl", term_map.move({ open_cmd = "belowright vnew" }))
+  --     vim.keymap.set("n", "<leader>tL", term_map.move({ open_cmd = "botright vnew" }))
+  --     vim.keymap.set("n", "<leader>th", term_map.move({ open_cmd = "belowright new" }))
+  --     vim.keymap.set("n", "<leader>tH", term_map.move({ open_cmd = "botright new" }))
+  --     vim.keymap.set("n", "<leader>tf", term_map.move({ open_cmd = "float" }))
+  --   end
   -- },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  },
   {
     "folke/which-key.nvim",
     config = function()
@@ -393,16 +379,6 @@ local plugins = {
     }
   },
   -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  --   config = function()
-  --     require("neo-tree").setup()
-  --   end,
-  --   cmd = { "Neotree" },
-  -- },
   {
     'willothy/nvim-cokeline',
     dependencies = {
@@ -478,7 +454,6 @@ local plugins = {
     config = function()
       local harpoon = require("harpoon")
       harpoon:setup()
-      vim.keymap.set("n", "<leader>hm", function() harpoon:list():add() end)
 
       -- basic telescope configuration
       local conf = require("telescope.config").values
@@ -498,6 +473,8 @@ local plugins = {
         }):find()
       end
 
+      -- Keymaps
+      vim.keymap.set("n", "<leader>hm", function() harpoon:list():add() end)
       vim.keymap.set("n", "<leader>hl", function() toggle_telescope(harpoon:list()) end,
         { desc = "Open harpoon window" })
     end
@@ -527,10 +504,13 @@ local plugins = {
     'nvimdev/lspsaga.nvim',
     config = function()
       require('lspsaga').setup({
-        -- ui = {
-        --   enable = false,
-        --   sign = false
-        -- }
+        ui = {
+          enable = false,
+          sign = false
+        },
+        lightbulb = {
+          sign = false
+        }
       })
 
       vim.keymap.set("n", "<leader>h", "<cmd>Lspsaga hover_doc<cr>",
@@ -543,6 +523,10 @@ local plugins = {
         { noremap = true, silent = true })
       vim.keymap.set("n", "<leader>en", "<cmd>Lspsaga diagnostic_jump_next<cr>",
         { noremap = true, silent = true })
+      vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<cr>",
+        { noremap = true, silent = true })
+      -- vim.keymap.set("n", "<leader>tt", "<cmd>Lspsaga term_toggle<cr>",
+      --   { noremap = true, silent = true })
     end,
     dependencies = {
       'nvim-treesitter/nvim-treesitter', -- optional
@@ -685,6 +669,13 @@ local plugins = {
   {
     "rhysd/vim-grammarous"
   },
+  {
+    'junegunn/fzf',
+    run = function() vim.fn['fzf#install']() end
+  },
+  {
+    'junegunn/fzf.vim'
+  },
 }
 
 local opts = {}
@@ -733,7 +724,7 @@ vim.cmd([[
 set clipboard+=unnamedplus
 set completeopt=menu,menuone,noselect
 
-colorscheme carbonfox
+colorscheme tokyonight
 
 "Keybindings
 nmap <C-y> :set hlsearch! hlsearch?<CR>
@@ -747,7 +738,6 @@ vmap M ]m
 nnoremap <C-w>n :split<CR>
 
 " aliases
-command! TT :ToggleTerm direction=float
 autocmd BufReadPost *.re set filetype=reason
 autocmd BufWritePre * lua vim.lsp.buf.format()
 ]])
