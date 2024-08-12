@@ -30,35 +30,35 @@ local plugins = {
     "reasonml-editor/vim-reason-plus",
     ft = "reason"
   },
-  {
-    "elixir-tools/elixir-tools.nvim",
-    version = "*",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local elixir = require("elixir")
-      local elixirls = require("elixir.elixirls")
-
-      elixir.setup {
-        nextls = { enable = true },
-        credo = {},
-        elixirls = {
-          enable = true,
-          settings = elixirls.settings {
-            dialyzerEnabled = false,
-            enableTestLenses = false,
-          },
-          on_attach = function(_client, _bufnr)
-            vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-            vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-            vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-          end,
-        }
-      }
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
+  -- {
+  --   "elixir-tools/elixir-tools.nvim",
+  --   version = "*",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   config = function()
+  --     local elixir = require("elixir")
+  --     local elixirls = require("elixir.elixirls")
+  --
+  --     elixir.setup {
+  --       nextls = { enable = true },
+  --       credo = {},
+  --       elixirls = {
+  --         enable = true,
+  --         settings = elixirls.settings {
+  --           dialyzerEnabled = false,
+  --           enableTestLenses = false,
+  --         },
+  --         on_attach = function(_client, _bufnr)
+  --           vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+  --           vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+  --           vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+  --         end,
+  --       }
+  --     }
+  --   end,
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  -- },
 
   -- colorscheme
   "bluz71/vim-nightfly-colors",
@@ -88,6 +88,15 @@ local plugins = {
         }
       })
     end
+  },
+  {
+    "rebelot/kanagawa.nvim"
+  },
+  {
+    "0xstepit/flow.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
   },
 
   -- code tools
@@ -224,6 +233,16 @@ local plugins = {
 
   -- interface
   {
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+      require("peek").setup()
+      vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+      vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+    end,
+  },
+  {
     'goolord/alpha-nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
@@ -308,6 +327,7 @@ local plugins = {
       local Terminal = require('toggleterm.terminal').Terminal
       local lazygit  = Terminal:new({ cmd = "lazygit", hidden = true })
       local btop     = Terminal:new({ cmd = "btop", hidden = true })
+      local pnpm     = Terminal:new({ cmd = "pnpm build && sleep 1", hidden = true })
 
       function _lazygit_toggle()
         lazygit:toggle()
@@ -317,8 +337,13 @@ local plugins = {
         btop:toggle()
       end
 
+      function _pnpm_toggle()
+        pnpm:toggle()
+      end
+
       vim.api.nvim_set_keymap("n", "<leader>tg", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
       vim.api.nvim_set_keymap("n", "<leader>bt", "<cmd>lua _btop_toggle()<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>pb", "<cmd>lua _pnpm_toggle()<CR>", { noremap = true, silent = true })
     end
   },
   -- {
@@ -341,21 +366,21 @@ local plugins = {
   --     vim.keymap.set("n", "<leader>tf", term_map.move({ open_cmd = "float" }))
   --   end
   -- },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     -- add any options here
+  --   },
+  --   dependencies = {
+  --     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+  --     "MunifTanjim/nui.nvim",
+  --     -- OPTIONAL:
+  --     --   `nvim-notify` is only needed, if you want to use the notification view.
+  --     --   If not available, we use `mini` as the fallback
+  --     "rcarriga/nvim-notify",
+  --   }
+  -- },
   {
     "folke/which-key.nvim",
     config = function()
@@ -525,6 +550,8 @@ local plugins = {
         { noremap = true, silent = true })
       vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<cr>",
         { noremap = true, silent = true })
+      vim.keymap.set("n", "<leader>r", "<cmd>Lspsaga incoming_calls<cr>",
+        { noremap = true, silent = true })
       -- vim.keymap.set("n", "<leader>tt", "<cmd>Lspsaga term_toggle<cr>",
       --   { noremap = true, silent = true })
     end,
@@ -544,7 +571,9 @@ local plugins = {
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup {
-        ensure_installed = { "elixirls", "bashls",
+        ensure_installed = {
+          -- "elixirls",
+          "bashls",
           "pyright", "dockerls",
           "docker_compose_language_service", "cssls", "html", "jsonls", "vimls", "jsonls",
           "lua_ls", "sqlls" }
@@ -724,7 +753,7 @@ vim.cmd([[
 set clipboard+=unnamedplus
 set completeopt=menu,menuone,noselect
 
-colorscheme tokyonight
+colorscheme kanagawa
 
 "Keybindings
 nmap <C-y> :set hlsearch! hlsearch?<CR>
