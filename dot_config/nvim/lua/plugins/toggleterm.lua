@@ -24,11 +24,15 @@ return {
       },
       -- open_mapping = [[<C-/>]],
       on_open = function(term)
+        vim.notify("startinsert")
         vim.cmd("startinsert")
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<S-h>", "<nop>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<S-l>", "<nop>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<A-h>", "<nop>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<A-l>", "<nop>", { noremap = true, silent = true })
+      end,
+      on_close = function(_term)
+        vim.cmd("stopinsert")
       end
     })
 
