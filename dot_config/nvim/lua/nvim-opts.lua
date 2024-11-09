@@ -16,6 +16,7 @@ function opts.init()
   vim.opt.wrap = true
   vim.opt.termguicolors = true
   vim.opt.relativenumber = false
+  vim.opt.clipboard = 'unnamedplus'
 end
 
 return opts
