@@ -3,7 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons"
-  },   -- If you want devicons
+  }, -- If you want devicons
   -- config = true
   config = function()
     require('cokeline').setup({
@@ -19,8 +19,8 @@ return {
         }
       },
     })
-    vim.keymap.set('n', '<Tab>', '<Plug>(cokeline-focus-prev)', { silent = true })
-    vim.keymap.set('n', '<backspace>', '<Plug>(cokeline-focus-next)', { silent = true })
+    -- vim.keymap.set('n', '<Tab>', '<Plug>(cokeline-focus-prev)', { silent = true })
+    -- vim.keymap.set('n', '<backspace>', '<Plug>(cokeline-focus-next)', { silent = true })
     vim.keymap.set('n', '<Leader>p', '<Plug>(cokeline-switch-prev)', { silent = true })
     vim.keymap.set('n', '<Leader>n', '<Plug>(cokeline-switch-next)', { silent = true })
     vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { silent = true })
