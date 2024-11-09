@@ -6,6 +6,7 @@ return {
   -- },
   config = function()
     require("toggleterm").setup({
+      start_in_insert = true,
       direction = "float",
       shade_terminals = true,
       shading_factor = -10,
@@ -14,25 +15,16 @@ return {
         winblend = 3,
       },
       highlights = {
-        --   -- highlights which map to a highlight group name and a table of it's values
-        --   -- NOTE: this is only a subset of values, any group placed here will be set for the terminal window split
-        --   Normal = {
-        --     guibg = "#000000",
-        --   },
         NormalFloat = {
           guibg = "#1E2030"
-          -- link = 'Normal'
         }
-        --   -- FloatBorder = {
-        --   --   guifg = "#000000",
-        --   --   guibg = "#000000",
-        --   -- },
       },
       winbar = {
         enable = true
       },
       -- open_mapping = [[<C-/>]],
       on_open = function(term)
+        vim.cmd("startinsert")
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<S-h>", "<nop>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<S-l>", "<nop>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<A-h>", "<nop>", { noremap = true, silent = true })
