@@ -2,11 +2,9 @@ local keys = {}
 
 function keys.init()
   vim.keymap.set("n", "<C-y>", ":set hlsearch! hlsearch?<CR>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<C-d>", ":BufferClose<CR>", { noremap = true, silent = true })
   vim.keymap.set("n", "<C-d>f", ":bd!<CR>", { noremap = true, silent = true })
   -- vim.keymap.set("t", "<C-n><C-n>", "<C-\\><C-n>", { noremap = true, silent = true })
   vim.keymap.set("n", "<C-w>n", ":split<CR>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<leader>ft", ":Neotree reveal float toggle<CR>", { noremap = true, silent = true })
   vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { noremap = true, silent = true })
 
   -- tab
@@ -14,8 +12,9 @@ function keys.init()
   vim.keymap.set("n", "<A-l>", ":tabnext<cr>", { noremap = true, silent = true })
 
   -- buffers
-  vim.keymap.set("n", "<S-h>", ":bnext<cr>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<S-l>", ":bprevious<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<S-h>", ":bprevious<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<S-l>", ":bnext<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<S-d>", ":BufferClose<CR>", { noremap = true, silent = true })
 
   vim.keymap.set("n", "<S-Up>", "<CMD>resize +2<CR>", { desc = "Increase window height", silent = true })
   vim.keymap.set("n", "<S-Down>", "<CMD>resize -2<CR>", { desc = "Decrease window height", silent = true })
