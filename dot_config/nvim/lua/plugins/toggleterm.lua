@@ -16,7 +16,7 @@ return {
       },
       highlights = {
         NormalFloat = {
-          guibg = "#1E2030"
+          guibg = "#16161E"
         }
       },
       winbar = {
@@ -32,10 +32,9 @@ return {
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<A-h>", "<nop>", { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(term.bufnr, "n", "<A-l>", "<nop>", { noremap = true, silent = true })
 
-        vim.cmd("set nu")
         vim.cmd("startinsert")
       end,
-      hide_numbers = false,
+      hide_numbers = true,
       insert_mappings = true,
       terminal_mappings = true,
     })
