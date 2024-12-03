@@ -17,6 +17,7 @@ function opts.init()
   vim.opt.termguicolors = true
   vim.opt.relativenumber = false
   vim.opt.clipboard = 'unnamedplus'
+  vim.opt.syntax = 'off'
 end
 
 return opts
