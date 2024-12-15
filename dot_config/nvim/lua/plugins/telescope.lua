@@ -12,12 +12,31 @@ return {
       build =
       "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
     },
+    {
+      "tiagovla/scope.nvim",
+      config = function()
+        require("scope").setup({})
+      end
+    },
+    {
+      'akinsho/bufferline.nvim',
+      version = "*",
+      dependencies = 'nvim-tree/nvim-web-devicons',
+      config = function()
+        require("bufferline").setup({
+          -- options = {
+          --   mode = "tabs"
+          -- }
+        })
+      end
+    }
   },
   config = function()
     -- require("telescope-config")
 
     local actions = require("telescope.actions")
     require("telescope").load_extension('lsp_handlers')
+    require("telescope").load_extension('scope')
 
     require("telescope").setup({
       extensions = {
