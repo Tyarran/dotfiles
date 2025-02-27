@@ -54,6 +54,7 @@ return {
     vim.keymap.set("t", "<C-_>", "<C-\\><C-n>:ToggleTerm<CR>", { noremap = true, silent = true })
     vim.keymap.set("t", "<C-/>", "<C-\\><C-n>:ToggleTerm<CR>", { noremap = true, silent = true })
     vim.keymap.set("t", "<ESC><ESC>", "<C-\\><C-n>", { noremap = true, silent = true })
+    vim.keymap.set("t", "<leader><leader>", "<C-\\><C-n>", { noremap = true, silent = true })
     -- vim.keymap.set("t", "<ESC>", "<nop>", { noremap = true, silent = true })
   end
 }

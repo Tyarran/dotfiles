@@ -19,7 +19,7 @@ return {
       -- and the mappings are not applied.
       -- overwrite_mappings = false,
       --
-      new_notes_location = "current_dir",
+      new_notes_location = "Notes permanentes",
       -- Optional, completion.
       completion = {
         -- If using nvim-cmp, otherwise set to false
@@ -34,9 +34,29 @@ return {
         -- E.g. "[[Foo" completes to "[[foo|Foo]]" assuming "foo" is the ID of the note.
         -- prepend_note_id = true
       },
+
+      templates = {
+        folder = "templates",
+        -- date_format = "%Y-%m-%d-%a",
+        -- time_format = "%H:%M",
+      },
+
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = "Notes quotidiennes",
+        -- Optional, if you want to change the date format for the ID of daily notes.
+        date_format = "%Y-%m-%d",
+        -- Optional, if you want to change the date format of the default alias of daily notes.
+        alias_format = "%B %-d, %Y",
+        -- Optional, default tags to add to each new daily note created.
+        default_tags = { "daily-notes" },
+        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+        template = "Note quotidienne.md"
+      },
     })
     vim.keymap.set("n", "<leader>os", ":ObsidianSearch<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<leader>oqs", ":ObsidianQuickSwitch<CR>", { noremap = true, silent = true })
     vim.keymap.set("n", "<leader>on", ":ObsidianNew ", { noremap = true })
+    vim.keymap.set("n", "<leader>otd", ":ObsidianToday<CR>", { noremap = true })
   end,
 }

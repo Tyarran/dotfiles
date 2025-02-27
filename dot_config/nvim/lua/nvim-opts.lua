@@ -18,6 +18,7 @@ function opts.init()
   vim.opt.relativenumber = false
   vim.opt.clipboard = 'unnamedplus'
   vim.opt.syntax = 'off'
+  vim.opt.laststatus = 3
 end
 
 return opts
