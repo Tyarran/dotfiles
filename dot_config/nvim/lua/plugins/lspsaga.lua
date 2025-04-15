@@ -17,8 +17,8 @@ return {
       { noremap = true, silent = true })
     vim.keymap.set("n", "<leader>f", "<cmd>Lspsaga finder<cr>",
       { noremap = true, silent = true })
-    vim.keymap.set("n", "<leader>gd", "<cmd>Lspsaga goto_definition<cr>",
-      { noremap = true, silent = true })
+    -- vim.keymap.set("n", "<leader>gd", "<cmd>Lspsaga goto_definition<cr>",
+    --   { noremap = true, silent = true })
     vim.keymap.set("n", "<leader>en", "<cmd>Lspsaga diagnostic_jump_next<cr>",
       { noremap = true, silent = true })
     vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<cr>",
@@ -29,7 +29,7 @@ return {
     --   { noremap = true, silent = true })
   end,
   dependencies = {
-    'nvim-treesitter/nvim-treesitter',   -- optional
-    'nvim-tree/nvim-web-devicons',       -- optional
+    'nvim-treesitter/nvim-treesitter', -- optional
+    'nvim-tree/nvim-web-devicons',     -- optional
   }
 }
