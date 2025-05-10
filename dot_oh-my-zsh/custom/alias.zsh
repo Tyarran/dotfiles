@@ -41,3 +41,10 @@ alias mc='mix compile'
 alias dc='docker-compose'
 
 alias cat="bat -p"
+
+alias reset_bt="sudo systemctl stop bluetooth && sudo rmmod btintel_pcie btintel && sudo modprobe btintel && sudo modprobe btintel_pcie && sudo systemctl start bluetooth"
+
+# lazygit
+alias lg="lazygit"
+
+# alias poetry_shell="eval $(poetry env activate)"

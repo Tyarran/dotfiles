@@ -1,11 +1,19 @@
 return {
   "yetone/avante.nvim",
   event = "VeryLazy",
-  lazy = false,
-  version = false, -- set this if you want to always pull the latest change
+  version = false, -- Never set this value to "*"! Never!
   opts = {
     -- add any opts here
-    provider = "copilot"
+    -- for example
+    provider = "openai",
+    openai = {
+      endpoint = "https://api.openai.com/v1",
+      model = "gpt-4o",             -- your desired model (or use gpt-4o, etc.)
+      timeout = 30000,              -- Timeout in milliseconds, increase this for reasoning models
+      temperature = 0,
+      max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+      --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
@@ -16,58 +24,12 @@ return {
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-    {
-      "zbirenbaum/copilot.lua",    -- for providers='copilot'
-      cmd = "Copilot",
-      event = "InsertEnter",
-      config = function()
-        require("copilot").setup({
-          panel = {
-            enabled = false,
-            auto_refresh = true,
-            keymap = {
-              jump_prev = "[[",
-              jump_next = "]]",
-              accept = "<C-J>",
-              refresh = "gr",
-              open = "<M-CR>"
-            },
-            layout = {
-              position = "vertical", -- | top | left | right | horizontal | vertical
-              ratio = 0.4
-            },
-          },
-          suggestion = {
-            enabled = false,
-            auto_trigger = false,
-            hide_during_completion = true,
-            debounce = 75,
-            keymap = {
-              accept = "<M-l>",
-              accept_word = false,
-              accept_line = false,
-              next = "<M-]>",
-              prev = "<M-[>",
-              dismiss = "<C-]>",
-            },
-          },
-          -- filetypes = {
-          --   yaml = false,
-          --   markdown = false,
-          --   help = false,
-          --   gitcommit = false,
-          --   gitrebase = false,
-          --   hgcommit = false,
-          --   svn = false,
-          --   cvs = false,
-          --   ["."] = false,
-          -- },
-          copilot_node_command = 'node', -- Node.js version must be > 18.x
-          server_opts_overrides = {},
-        })
-      end,
-    },
+    "echasnovski/mini.pick",         -- for file_selector provider mini.pick
+    "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+    "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
+    "ibhagwan/fzf-lua",              -- for file_selector provider fzf
+    "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
+    "zbirenbaum/copilot.lua",        -- for providers='copilot'
     {
       -- support for image pasting
       "HakonHarnes/img-clip.nvim",
@@ -94,7 +56,4 @@ return {
       ft = { "markdown", "Avante" },
     },
   },
-  config = function()
-    vim.keymap.set("n", "<Leader>av", "<cmd>AvanteToggle<cr>", { silent = true })
-  end
 }

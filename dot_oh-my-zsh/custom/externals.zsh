@@ -16,7 +16,7 @@ eval `keychain --eval -q --agents "ssh,gpg"`
 
 
 # Pew autocompletion
-source $(pew shell_config)
+# source $(pew shell_config)
 
 # Tmuxinator
 # source /home/romain/.gem/ruby/2.6.0/gems/tmuxinator-1.1.3/completion/tmuxinator.zsh
@@ -25,20 +25,23 @@ source $(pew shell_config)
 #source "$HOME/.oh-my-zsh/custom/externals/goto/goto.sh"
 
 # Z
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh 
+# [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh 
 
 
 # PipX
-autoload -U bashcompinit
-bashcompinit
-eval "$(register-python-argcomplete pipx)"
+# autoload -U bashcompinit
+# bashcompinit
+# eval "$(register-python-argcomplete pipx)"
 
-# asdf
-source /opt/asdf-vm/asdf.sh
-
-function ssh_jump() {
-  ssh -A -J $1 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $2
-}
+# function ssh_jump() {
+#   ssh -A -J $1 -o "UserKnownHostsFile=/dev/null" -o "StrictHostKeyChecking=no" $2
+# }
 
 # Nix
 #source "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+
+# autoenv
+# source /usr/share/autoenv-git/activate.sh
+
+# mise
+eval "$(mise activate zsh)"
