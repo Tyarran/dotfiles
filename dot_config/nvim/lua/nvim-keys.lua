@@ -30,7 +30,10 @@ function keys.init()
   vim.api.nvim_set_keymap('c', "<leader><leader>", '<Esc>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('t', "<leader><leader>", '<Esc>', { noremap = true, silent = true })
 
-  -- -- cokeline (à vérifier)
+
+  -- -- cokeline (à vérifier)vim.keymap.set("n", "<leader>ca", function()
+  -- 	require("tiny-code-action").code_action()
+  -- end, { noremap = true, silent = true })
   -- vim.keymap.set('n', '<S-h>', '<Plug>(cokeline-focus-prev)', { silent = false })
   -- vim.keymap.set('n', '<S-l>', '<Plug>(cokeline-focus-next)', { silent = true })
 end

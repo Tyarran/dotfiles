@@ -9,6 +9,7 @@ return {
       enabled = true,
       timeout = 3000,
     },
+    input = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
@@ -22,7 +23,7 @@ return {
     gitbrowse = {},
     explorer = {
       replace_netrw = true,
-    }
+    },
   },
   keys = {
     -- Top Pickers & Explorer
