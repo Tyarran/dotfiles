@@ -5,7 +5,7 @@ return {
   opts = {
     -- add any opts here
     -- for example
-    provider = "copilot",
+    -- provider = "copilot",
     -- openai = {
     --   endpoint = "https://api.openai.com/v1",
     --   model = "gpt-4o",             -- your desired model (or use gpt-4o, etc.)
@@ -14,6 +14,30 @@ return {
     --   max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
     --   --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
     -- },
+    provider = "copilot",
+    providers = {
+      mistral = {
+        __inherited_from = "openai",
+        api_key_name = "MISTRAL_API_KEY",
+        endpoint = "https://api.mistral.ai/v1/",
+        model = "mistral-large-latest",
+        extra_request_body = {
+          max_tokens = 4096, -- to avoid using max_completion_tokens
+        },
+      },
+      copilot = {
+        endpoint = "https://api.githubcopilot.com",
+        -- model = "claude-sonnet-4",
+        model = "gpt-4.1",
+        proxy = nil, -- [protocol://]host[:port] Use this proxy
+        allow_insecure = false, -- Allow insecure server connections
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 20480,
+        },
+      },
+    },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
@@ -49,7 +73,7 @@ return {
     },
     {
       -- Make sure to set this up properly if you have lazy=true
-      'MeanderingProgrammer/render-markdown.nvim',
+      "MeanderingProgrammer/render-markdown.nvim",
       opts = {
         file_types = { "markdown", "Avante" },
       },
@@ -57,3 +81,4 @@ return {
     },
   },
 }
+
