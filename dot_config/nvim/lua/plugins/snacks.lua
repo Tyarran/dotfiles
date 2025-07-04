@@ -24,6 +24,24 @@ return {
     explorer = {
       replace_netrw = true,
     },
+    picker = {
+      sources = {
+        -- explorer = {
+        --   preset = 'vscode',
+        --   preview = preview,
+        --   layout = {
+        --     box = 'vertical',
+        --     row = 0,
+        --     col = 0,
+        --     border = 'rounded',
+        --     -- {
+        --     --   win = 'input',
+        --     --   border = 'left'
+        --     -- }
+        --   }
+        -- }
+      }
+    }
   },
   keys = {
     -- Top Pickers & Explorer

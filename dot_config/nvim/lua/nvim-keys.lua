@@ -10,6 +10,8 @@ function keys.init()
   -- tab
   vim.keymap.set("n", "<A-h>", ":tabprevious<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<A-l>", ":tabnext<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>tn", ":tabnew<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<leader>tc", ":tabclose<cr>", { noremap = true, silent = true })
 
   -- buffers
   -- vim.keymap.set("n", "<S-h>", ":bprevious<cr>", { silent = true })

@@ -27,5 +27,6 @@ vim.cmd([[
 colorscheme tokyonight-night
 autocmd BufReadPost *.re set filetype=reason
 autocmd BufWritePre * lua vim.lsp.buf.format()
+autocmd BufReadPost *.mjml set filetype=xml
 ]])
 -- set lazyredraw
