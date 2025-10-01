@@ -11,7 +11,8 @@ return {
       automatic_enable = {
         "lua_ls",
         "vimls",
-        "bashls"
+        "bashls",
+        "vue-language-server"
       }
     }
   end

@@ -32,6 +32,23 @@ function keys.init()
   vim.api.nvim_set_keymap('c', "<leader><leader>", '<Esc>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('t', "<leader><leader>", '<Esc>', { noremap = true, silent = true })
 
+  -- code_action
+  vim.keymap.set("n", "<leader>ca>", ":lua vim.lsp.buf.code_action()<cr>", { desc = "List code actions", silent = true })
+
+  --quickfix list
+  vim.keymap.set('n', '<A-]>', ':cnext<CR>', { noremap = true, silent = true })
+  vim.keymap.set('n', '<A-[>', ':cprevious<CR>', { noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>qq', ':copen<CR>', { noremap = true, silent = true })
+
+  --lsp
+  vim.keymap.set('n', 'gi', function() vim.lsp.buf.incoming_calls() end, { noremap = true, silent = true })
+  vim.keymap.set('n', 'go', function() vim.lsp.buf.outgoing_calls() end, { noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>h', function() vim.lsp.buf.hover() end, { noremap = true, silent = true })
+  vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, { noremap = true, silent = true })
+  -- { "gi",              function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
+
+
+
 
   -- -- cokeline (à vérifier)vim.keymap.set("n", "<leader>ca", function()
   -- 	require("tiny-code-action").code_action()

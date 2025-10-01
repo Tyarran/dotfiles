@@ -8,10 +8,15 @@ return {
     "nvim-neotest/neotest-python",
   },
   config = function()
-    require("neotest").setup({
-      adapter = {
+    neotest = require("neotest")
+    neotest.setup({
+      adapters = {
         require("neotest-python")
       }
     })
+    vim.keymap.set("n", "<leader>tr", function() neotest.run.run() end, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>to", function() neotest.output.open() end, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>top", function() neotest.output_panel.toggle() end, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>ts", function() neotest.summary.toggle() end, { noremap = true, silent = true })
   end
 }
