@@ -17,3 +17,4 @@ export PROJECTS_PATH="$HOME/Projects"
 export NIX_BUILD_SHELL=zsh
 
 export PYTHONBREAKPOINT="pudb.set_trace"
+export ECARD_BACK_DIR="/home/romain/Projects/ecard-back"

@@ -11,12 +11,23 @@ return {
     neotest = require("neotest")
     neotest.setup({
       adapters = {
-        require("neotest-python")
-      }
+        require("neotest-python")({
+          runner = "eb",
+          args = { "test" },
+        }),
+      },
     })
-    vim.keymap.set("n", "<leader>tr", function() neotest.run.run() end, { noremap = true, silent = true })
-    vim.keymap.set("n", "<leader>to", function() neotest.output.open() end, { noremap = true, silent = true })
-    vim.keymap.set("n", "<leader>top", function() neotest.output_panel.toggle() end, { noremap = true, silent = true })
-    vim.keymap.set("n", "<leader>ts", function() neotest.summary.toggle() end, { noremap = true, silent = true })
-  end
+    vim.keymap.set("n", "<leader>tr", function()
+      neotest.run.run()
+    end, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>to", function()
+      neotest.output.open()
+    end, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>top", function()
+      neotest.output_panel.toggle()
+    end, { noremap = true, silent = true })
+    vim.keymap.set("n", "<leader>ts", function()
+      neotest.summary.toggle()
+    end, { noremap = true, silent = true })
+  end,
 }

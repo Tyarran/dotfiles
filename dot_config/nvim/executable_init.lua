@@ -3,7 +3,6 @@ opts.init()
 
 vim.g.mapleader = ","
 
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -28,5 +27,7 @@ colorscheme kanagawa
 autocmd BufReadPost *.re set filetype=reason
 autocmd BufWritePre * lua vim.lsp.buf.format()
 autocmd BufReadPost *.mjml set filetype=xml
+set wrap
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden
 ]])
 -- set lazyredraw
