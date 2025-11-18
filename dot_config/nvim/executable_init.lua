@@ -23,7 +23,7 @@ local keys = require("nvim-keys")
 keys.init()
 
 vim.cmd([[
-colorscheme kanagawa
+colorscheme tokyonight
 autocmd BufReadPost *.re set filetype=reason
 autocmd BufWritePre * lua vim.lsp.buf.format()
 autocmd BufReadPost *.mjml set filetype=xml
