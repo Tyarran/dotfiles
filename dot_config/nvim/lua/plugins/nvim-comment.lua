@@ -1,7 +1,7 @@
 return {
-  "terrortylor/nvim-comment",
-  config = function()
-    require("nvim_comment").setup()
-  end,
-  event = "BufRead",
+	"terrortylor/nvim-comment",
+	config = function()
+		require("nvim_comment").setup()
+	end,
+	event = "BufRead",
 }
