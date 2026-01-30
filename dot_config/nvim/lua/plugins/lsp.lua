@@ -23,6 +23,9 @@ return {
 		build = ":TSUpdate",
 	},
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+	},
+	{
 		"stevearc/conform.nvim",
 		opts = {},
 		config = function()
@@ -30,6 +33,9 @@ return {
 				require("conform").format()
 			end, { desc = "Format buffer", silent = true })
 		end,
+	},
+	{
+		"mfussenegger/nvim-lint",
 	},
 	{
 		"noirbizarre/ensure.nvim",

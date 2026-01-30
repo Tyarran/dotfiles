@@ -16,41 +16,41 @@ return {
 		lazy = false,
 		priority = 1000,
 		opts = {},
-		{
-			"folke/tokyonight.nvim",
-			lazy = false,
-			priority = 1000,
-			opts = {},
-		},
-		{
-			"catppuccin/nvim",
-			config = function()
-				vim.cmd("colorscheme catppuccin-mocha")
-			end,
-		},
-		{
-			"EdenEast/nightfox.nvim",
-			config = function()
-				require("nightfox").setup({})
-			end,
-		},
-		{
-			"navarasu/onedark.nvim",
-		},
-		{
-			"AlexvZyl/nordic.nvim",
-		},
-		{
-			"nyoom-engineering/oxocarbon.nvim",
-		},
-		{
-			"rose-pine/neovim",
-		},
-		{
-			"elvessousa/sobrio",
-		},
-		{
-			"nyoom-engineering/nyoom.nvim",
-		},
+		config = function()
+			vim.cmd("colorscheme kanagawa")
+		end,
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
+	{
+		"catppuccin/nvim",
+	},
+	{
+		"EdenEast/nightfox.nvim",
+		config = function()
+			require("nightfox").setup({})
+		end,
+	},
+	{
+		"navarasu/onedark.nvim",
+	},
+	{
+		"AlexvZyl/nordic.nvim",
+	},
+	{
+		"nyoom-engineering/oxocarbon.nvim",
+	},
+	{
+		"rose-pine/neovim",
+	},
+	{
+		"elvessousa/sobrio",
+	},
+	{
+		"nyoom-engineering/nyoom.nvim",
 	},
 }

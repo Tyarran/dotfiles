@@ -20,6 +20,7 @@ function lazy.init()
 	require("lazy").setup({
 		spec = {
 			{ import = "plugins" },
+			{ import = "plugins/languages" },
 		},
 		local_spec = true,
 		checker = { enabled = true },
